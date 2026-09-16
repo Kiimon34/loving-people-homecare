@@ -1,0 +1,18 @@
+---
+const stats = [
+  { target: 7, label: "Days a Week Available" },
+  { target: 100, label: "% Tailored Care Plans" },
+  { target: 46250, label: "Castleton & Marion Hub" },
+  { target: 1, label: "Clear Priority: Independence" }
+];
+---
+<section class="bg-brand-dark py-16 text-white border-y border-stone-800">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    {stats.map((stat) => (
+      <div>
+        <div class="text-4xl sm:text-5xl font-black text-brand-amber counter" data-target={stat.target}>0</div>
+        <div class="text-xs sm:text-sm text-stone-300 mt-2 font-medium">{stat.label}</div>
+      </div>
+    ))}
+  </div>
+</section>

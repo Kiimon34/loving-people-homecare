@@ -1,0 +1,32 @@
+---
+const pillars = [
+  {
+    step: "01",
+    title: "Medication Reminders",
+    desc: "Daily routines kept consistent. On-time reminders for prescriptions, supplements, and fluid intake."
+  },
+  {
+    step: "02",
+    title: "Companionship & Chores",
+    desc: "Active companionship, nutritious meal prep, fresh bed linens, and keeping living spaces safe and tidy."
+  },
+  {
+    step: "03",
+    title: "Personal Care Assistance",
+    desc: "Dignified, patient help with bathing, dressing, grooming, and safe mobility transfers around the home."
+  }
+];
+---
+<section class="relative -mt-12 max-w-7xl mx-auto px-6 z-20">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {pillars.map((item) => (
+      <div class="reveal-up bg-white p-8 rounded-2xl border border-brand-border shadow-lg shadow-stone-200/40 hover:-translate-y-1.5 transition-transform duration-300">
+        <div class="w-12 h-12 rounded-xl bg-brand-warm text-brand-rust border border-brand-border flex items-center justify-center mb-5 font-bold">
+          {item.step}
+        </div>
+        <h3 class="text-lg font-extrabold text-brand-dark mb-2">{item.title}</h3>
+        <p class="text-sm text-brand-muted leading-relaxed">{item.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+const steps = [
+  { num: "Step 01", title: "Initial Call", text: "Reach out directly to outline your current routine, challenges, and scheduling requirements." },
+  { num: "Step 02", title: "Free Assessment", text: "We sit down together to review physical needs, safety checks, and preferred schedules." },
+  { num: "Step 03", title: "Caregiver Match", text: "Pairing you with a compatible, background-checked professional who fits your family dynamic." },
+  { num: "Step 04", title: "Care Commences", text: "Care begins on your terms, with continuous agency communication and active oversight." }
+];
+---
+<section id="process" class="py-24 max-w-7xl mx-auto px-6">
+  <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+    <span class="text-brand-rust text-xs font-bold uppercase tracking-wider">Simple Steps</span>
+    <h2 class="text-3xl sm:text-4xl font-black text-brand-dark">How We Begin Care</h2>
+    <p class="text-brand-muted">A clear, supportive path to setting up in-home assistance.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    {steps.map((s) => (
+      <div class="reveal-up bg-white p-7 rounded-2xl border border-brand-border">
+        <span class="text-brand-rust font-mono font-bold text-xs">{s.num}</span>
+        <h4 class="text-lg font-bold text-brand-dark mt-2 mb-2">{s.title}</h4>
+        <p class="text-sm text-brand-muted leading-relaxed">{s.text}</p>
+      </div>
+    ))}
+  </div>
+</section>

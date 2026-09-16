@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    
+    <!-- Tailwind Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                warm: '#FBF9F5',
+                surface: '#FFFFFF',
+                border: '#EFE7DE',
+                amber: '#E08226',
+                rust: '#C7541C',
+                dark: '#1F1A17',
+                muted: '#6B625B'
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <style is:global>
+      /* Hard-reset SVGs and images so they never blow up before CSS renders */
+      svg {
+        display: inline-block;
+        max-width: 100%;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-up.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .logo-gradient-text {
+        background: linear-gradient(135deg, #E08226 0%, #C7541C 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="bg-brand-warm text-brand-muted font-sans antialiased selection:bg-brand-amber/20 selection:text-brand-dark">
+    <!-- Everything in index.astro renders right here inside slot -->
+    <slot />
+
+    <script is:inline>
+      const revealItems = document.querySelectorAll('.reveal-up');
+      const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, (i % 3) * 120);
+            scrollObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealItems.forEach((el) => scrollObserver.observe(el));
+
+      const counters = document.querySelectorAll('.counter');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = +(entry.target.getAttribute('data-target') || '0');
+            let count = 0;
+            const step = Math.ceil(target / 35);
+            const interval = setInterval(() => {
+              count += step;
+              if (count >= target) {
+                entry.target.textContent = target.toLocaleString();
+                clearInterval(interval);
+              } else {
+                entry.target.textContent = count.toLocaleString();
+              }
+            }, 35);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      counters.forEach((c) => counterObserver.observe(c));
+    </script>
+  </body>
+</html>

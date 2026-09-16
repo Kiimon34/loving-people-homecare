@@ -1,0 +1,51 @@
+---
+const services = [
+  {
+    title: "Hygiene & Personal Care",
+    desc: "Support with showers, sponge baths, personal hygiene, and daily grooming routines administered with complete patience and respect.",
+    tags: "Bathing · Grooming · Dressing"
+  },
+  {
+    title: "Mobility & Transfers",
+    desc: "Hands-on support moving safely between beds, recliners, and wheelchairs, plus active fall prevention around the house.",
+    tags: "Transfer Help · Walking Support"
+  },
+  {
+    title: "Fresh Meal Preparation",
+    desc: "Nutritious meals prepared according to specific dietary needs, keeping clients energized, well-hydrated, and satisfied.",
+    tags: "Cooking · Meal Prep · Hydration"
+  },
+  {
+    title: "Errands & Local Travel",
+    desc: "Reliable accompaniment for prescription runs, grocery shopping, and medical appointments throughout Indianapolis.",
+    tags: "Doctor Visits · Grocery · Pharmacy"
+  },
+  {
+    title: "Respite Care for Families",
+    desc: "Essential rest for family caregivers. Step away for an afternoon or a weekend with total peace of mind.",
+    tags: "Hourly · Day Shifts · Relief Care"
+  },
+  {
+    title: "Light Housekeeping",
+    desc: "Maintaining a sanitary environment with laundry, dishes, trash removal, and clutter-free walking paths.",
+    tags: "Tidying · Linens · Clutter Removal"
+  }
+];
+---
+<section id="services" class="py-24 max-w-7xl mx-auto px-6">
+  <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+    <span class="text-brand-rust text-xs font-bold uppercase tracking-widest">Our Service Scope</span>
+    <h2 class="text-3xl sm:text-4xl font-black text-brand-dark">Dedicated In-Home Support</h2>
+    <p class="text-brand-muted text-base">Attentive non-medical services matched to your loved one’s personal schedule.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {services.map((item) => (
+      <div class="reveal-up bg-white p-8 rounded-2xl border border-brand-border hover:border-brand-amber transition shadow-sm hover:shadow-md">
+        <h4 class="text-xl font-bold text-brand-dark mb-3">{item.title}</h4>
+        <p class="text-sm text-brand-muted leading-relaxed mb-4">{item.desc}</p>
+        <span class="text-xs font-bold text-brand-rust">{item.tags}</span>
+      </div>
+    ))}
+  </div>
+</section>
