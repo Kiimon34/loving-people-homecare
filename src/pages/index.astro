@@ -29,31 +29,38 @@ import '../styles/global.css';
     </div>
   </div>
 
-  <!-- Primary Sticky Header -->
+  <!-- Primary Sticky Header with Logo -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-      
-      <!-- Brand Logo Placement -->
       <a href="#" class="flex items-center group shrink-0">
         <img 
           src="/logo.png" 
           alt="Loving People Home Health Care" 
           class="w-auto object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
           style="max-height: 4.5rem; height: 4.5rem;"
+          onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';"
         />
+        <div id="fallback-logo" style="display:none;" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-amber to-brand-rust flex items-center justify-center text-white font-black text-xl shadow-md">
+            LP
+          </div>
+          <div>
+            <span class="text-xl font-black tracking-tight text-brand-dark uppercase block leading-none">Loving People</span>
+            <span class="text-[10px] font-bold tracking-[0.25em] text-brand-rust uppercase block mt-1">Home Health Care</span>
+          </div>
+        </div>
       </a>
 
-      <!-- Navigation Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-brand-dark">
         <a href="#services" class="hover:text-brand-rust transition">Care Services</a>
         <a href="#process" class="hover:text-brand-rust transition">How It Works</a>
+        <a href="#inquiry" class="hover:text-brand-rust transition">Intake Form</a>
         <a href="#contact" class="hover:text-brand-rust transition">Castleton Office</a>
       </nav>
 
-      <!-- CTA Button -->
       <div>
-        <a href="#contact" class="bg-gradient-to-r from-brand-amber to-brand-rust hover:brightness-105 text-white text-xs md:text-sm font-bold tracking-wide px-6 py-3 rounded-xl shadow-md shadow-brand-rust/20 transition-all active:scale-95 inline-block">
-          Request Free Assessment
+        <a href="#inquiry" class="bg-gradient-to-r from-brand-amber to-brand-rust hover:brightness-105 text-white text-xs md:text-sm font-bold tracking-wide px-6 py-3 rounded-xl shadow-md shadow-brand-rust/20 transition-all active:scale-95 inline-block">
+          Request Care Intake
         </a>
       </div>
     </div>
@@ -77,8 +84,8 @@ import '../styles/global.css';
         </p>
 
         <div class="pt-2 flex flex-col sm:flex-row gap-4">
-          <a href="#contact" class="inline-flex justify-center items-center bg-brand-dark hover:bg-black text-white font-bold px-7 py-4 rounded-xl shadow-lg transition active:scale-95">
-            Schedule Care Assessment
+          <a href="#inquiry" class="inline-flex justify-center items-center bg-brand-dark hover:bg-black text-white font-bold px-7 py-4 rounded-xl shadow-lg transition active:scale-95">
+            Start Care Intake
           </a>
           <a href="tel:3177179077" class="inline-flex justify-center items-center gap-2 border-2 border-brand-border hover:border-brand-amber text-brand-dark font-bold px-6 py-4 rounded-xl transition">
             (317) 717-9077
@@ -101,7 +108,6 @@ import '../styles/global.css';
         </div>
       </div>
 
-      <!-- Hero Visual Frame -->
       <div class="lg:col-span-5">
         <div class="relative mx-auto max-w-md lg:max-w-none">
           <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-brand-warm aspect-[4/3] bg-stone-200">
@@ -258,74 +264,287 @@ import '../styles/global.css';
     </div>
   </section>
 
-  <!-- Location & Contact Form -->
-  <section id="contact" class="py-20 bg-brand-warm border-t border-brand-border">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-5 space-y-6">
-        <div>
-          <span class="text-brand-rust text-xs font-bold uppercase tracking-wider">Direct Office Access</span>
-          <h3 class="text-3xl font-black text-brand-dark mt-1">Visit or Contact Us</h3>
-          <p class="text-brand-muted text-sm mt-2">Conveniently located near Castleton and Binford Boulevard in northeast Indianapolis.</p>
+  <!-- Complete Intake Form Section (Now using Web3Forms) -->
+  <section id="inquiry" class="py-20 bg-brand-warm border-t border-brand-border">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white p-8 md:p-12 rounded-3xl border border-brand-border shadow-xl">
+        
+        <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
+          <span class="text-brand-rust text-xs font-bold uppercase tracking-widest">Client Intake</span>
+          <h2 class="text-3xl font-black text-brand-dark tracking-tight">Request Home Care Services</h2>
+          <p class="text-sm text-brand-muted leading-relaxed">
+            Provide the client's information below so our care coordinator can verify coverage and review schedule availability.
+          </p>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl border border-brand-border space-y-4 text-sm">
-          <div class="flex items-start gap-3">
-            <div>
-              <p class="font-bold text-brand-dark">Castleton Office</p>
-              <p class="text-brand-muted">8250 Bash Street, Suite C1<br/>Indianapolis, IN 46250</p>
-            </div>
-          </div>
+        <form 
+          action="https://api.web3forms.com/submit" 
+          method="POST" 
+          class="space-y-8"
+        >
+          <!-- Web3Forms access_key field -->
+          <input type="hidden" name="access_key" value="C31a3a15-cc8b-4626-906c-1a76d5fb6a30" />
+          
+          <!-- Hidden custom fields for better email notifications -->
+          <input type="hidden" name="subject" value="New Patient Care Intake" />
+          <input type="hidden" name="from_name" value="Loving People Intake Form" />
 
-          <div class="border-t border-brand-border/60 pt-3">
-            <p class="font-bold text-brand-dark">Direct Phone</p>
-            <a href="tel:3177179077" class="text-brand-rust hover:underline font-bold text-base">(317) 717-9077</a>
-          </div>
+          <!-- Section 1: Client & Contact Info -->
+          <div class="space-y-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-brand-dark border-b border-brand-border pb-2">
+              1. Client & Contact Information
+            </h3>
 
-          <div class="border-t border-brand-border/60 pt-3">
-            <p class="font-bold text-brand-dark">Agency Hours</p>
-            <p class="text-brand-muted">Monday – Friday: 9:00 AM – 6:00 PM</p>
-            <p class="text-brand-muted">Saturday – Sunday: 10:00 AM – 4:00 PM</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Lead Capture Form -->
-      <div class="lg:col-span-7">
-        <div class="bg-white p-8 md:p-10 rounded-2xl border border-brand-border shadow-md">
-          <h3 class="text-2xl font-black text-brand-dark mb-1">Make An Inquiry</h3>
-          <p class="text-sm text-brand-muted mb-6">Fill out the form below and an agency coordinator will contact you promptly.</p>
-
-          <form action="#" method="POST" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-brand-dark uppercase tracking-wider mb-1">Full Name</label>
-                <input type="text" required placeholder="First and last name" class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm bg-brand-warm/30" />
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">First Name</label>
+                <input 
+                  type="text" 
+                  name="client_first_name" 
+                  required 
+                  placeholder="First name" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
               </div>
               <div>
-                <label class="block text-xs font-bold text-brand-dark uppercase tracking-wider mb-1">Phone Number</label>
-                <input type="tel" required placeholder="(317) 000-0000" class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm bg-brand-warm/30" />
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Last Name</label>
+                <input 
+                  type="text" 
+                  name="client_last_name" 
+                  required 
+                  placeholder="Last name" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Contact Phone Number</label>
+                <input 
+                  type="tel" 
+                  name="phone_number" 
+                  required 
+                  placeholder="(317) 000-0000" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Email Address</label>
+                <input 
+                  type="email" 
+                  name="email_address" 
+                  placeholder="contact@example.com" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-brand-dark uppercase tracking-wider mb-1">Inquiring For</label>
-              <select class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm bg-brand-warm/30">
-                <option>Parent</option>
-                <option>Spouse</option>
-                <option>Myself</option>
-                <option>Other Family Member / Client</option>
-              </select>
+              <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Client Physical Address</label>
+              <input 
+                type="text" 
+                name="client_street_address" 
+                required 
+                placeholder="Street address, apartment or suite" 
+                class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30 mb-3" 
+              />
+              <div class="grid grid-cols-3 gap-3">
+                <input 
+                  type="text" 
+                  name="client_city" 
+                  required 
+                  placeholder="City (e.g. Indianapolis)" 
+                  class="px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+                <input 
+                  type="text" 
+                  name="client_state" 
+                  value="IN" 
+                  class="px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+                <input 
+                  type="text" 
+                  name="client_zip" 
+                  required 
+                  placeholder="ZIP Code" 
+                  class="px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Coverage & Specific Member ID Details -->
+          <div class="space-y-4 pt-2">
+            <div class="flex items-center justify-between border-b border-brand-border pb-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-brand-dark">
+                2. Insurance Card & Member ID
+              </h3>
+              <span class="text-[11px] font-semibold text-brand-rust bg-brand-warm px-2.5 py-0.5 rounded-full border border-brand-border">
+                Refer to Front of Card
+              </span>
             </div>
 
+            <!-- Helpful Card Reference Tip Box -->
+            <div class="bg-amber-50/60 border border-amber-200/80 p-3.5 rounded-xl flex items-start gap-3 text-xs text-amber-950">
+              <svg class="w-4 h-4 text-brand-rust shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+              </svg>
+              <p class="leading-relaxed">
+                Look at the front of the health plan card. Enter the provider name (e.g. <em>UMR, UnitedHealthcare, Anthem</em>), the exact <strong>Member ID</strong> number, and the member name as printed on the card.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">
+                  Insurance Carrier / Plan Name <span class="text-brand-rust">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  name="insurance_carrier" 
+                  required 
+                  placeholder="e.g. UMR, UnitedHealthcare, Anthem, Indiana Medicaid" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1 flex items-center justify-between">
+                  <span>Member ID <span class="text-brand-rust">*</span></span>
+                  <span class="text-[10px] text-brand-muted font-normal">Found on front of card</span>
+                </label>
+                <input 
+                  type="text" 
+                  name="member_id" 
+                  required 
+                  placeholder="e.g. 48281611" 
+                  class="w-full px-4 py-3 rounded-xl border-2 border-brand-amber/60 bg-white text-sm font-mono font-bold tracking-wide text-brand-dark focus:outline-none focus:border-brand-rust" 
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">
+                  Member Name (As Printed on Card) <span class="text-brand-rust">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  name="cardholder_name" 
+                  required 
+                  placeholder="e.g. FIRST M LAST 00 MED" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">
+                  Group / Issuer Number (If Listed)
+                </label>
+                <input 
+                  type="text" 
+                  name="group_or_issuer_number" 
+                  placeholder="e.g. Issuer (80840) 911-39026-02" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+            </div>
+
+            <!-- Existing Agency / HHA Hours Question -->
+            <div class="bg-brand-warm/50 border border-brand-border p-5 rounded-2xl space-y-3 mt-2">
+              <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">
+                Do you currently receive home care coverage or have active Home Health Aide (HHA) hours with another agency?
+              </label>
+              <div class="flex items-center gap-6 text-sm font-semibold text-brand-dark">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="current_hha_coverage" value="No" checked class="accent-brand-rust" />
+                  No, not currently with an agency
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="current_hha_coverage" value="Yes" class="accent-brand-rust" />
+                  Yes, currently receiving hours
+                </label>
+              </div>
+              <input 
+                type="text" 
+                name="current_agency_details" 
+                placeholder="If yes, name of current agency and approximate weekly hours (optional)" 
+                class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-xs focus:outline-none focus:border-brand-amber bg-white" 
+              />
+            </div>
+          </div>
+
+          <!-- Section 3: Physician Details -->
+          <div class="space-y-4 pt-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-brand-dark border-b border-brand-border pb-2">
+              3. Primary Care Physician (PCP)
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Doctor / Clinic Name</label>
+                <input 
+                  type="text" 
+                  name="primary_care_doctor" 
+                  required 
+                  placeholder="Dr. Smith / Eskenazi / Community Health" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Date of Last Doctor Visit</label>
+                <input 
+                  type="date" 
+                  name="last_doctor_visit" 
+                  class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30" 
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Notes / Services of Interest -->
+          <div class="space-y-4 pt-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-brand-dark border-b border-brand-border pb-2">
+              4. Additional Care Notes
+            </h3>
             <div>
-              <label class="block text-xs font-bold text-brand-dark uppercase tracking-wider mb-1">Services of Interest</label>
-              <input type="text" placeholder="e.g. Hygiene care, transfer assistance, companionship" class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm bg-brand-warm/30" />
+              <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Services Needed or Special Requests</label>
+              <textarea 
+                name="additional_care_notes" 
+                rows="3" 
+                placeholder="e.g., Assistance with morning transfers, bath safety, meal prep requirements..." 
+                class="w-full px-4 py-3 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-amber bg-brand-warm/30"
+              ></textarea>
             </div>
+          </div>
 
-            <button type="submit" class="w-full bg-gradient-to-r from-brand-amber to-brand-rust hover:brightness-105 text-white font-bold py-4 rounded-xl transition shadow-md shadow-brand-rust/20 active:scale-[0.99]">
-              Send Care Request
-            </button>
-          </form>
+          <button 
+            type="submit" 
+            class="w-full bg-gradient-to-r from-brand-amber to-brand-rust hover:brightness-105 text-white font-bold py-4 rounded-xl transition shadow-md shadow-brand-rust/20 active:scale-[0.99] text-sm tracking-wide uppercase"
+          >
+            Submit Care Intake
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Castleton Office Info Section -->
+  <section id="contact" class="py-16 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="bg-brand-warm p-8 md:p-12 rounded-3xl border border-brand-border flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="space-y-2 text-center md:text-left">
+          <span class="text-brand-rust text-xs font-bold uppercase tracking-wider">Castleton Base of Operations</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-brand-dark">Loving People Home Health Care</h3>
+          <p class="text-brand-muted text-sm">8250 Bash Street, Suite C1 · Indianapolis, IN 46250</p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          <a href="tel:3177179077" class="bg-brand-dark hover:bg-black text-white font-bold px-8 py-4 rounded-xl shadow-md transition flex items-center gap-2">
+            (317) 717-9077
+          </a>
+          <a href="#inquiry" class="border-2 border-brand-border hover:border-brand-amber text-brand-dark font-bold px-8 py-4 rounded-xl transition">
+            Fill Intake Form
+          </a>
         </div>
       </div>
     </div>
@@ -340,6 +559,7 @@ import '../styles/global.css';
           alt="Loving People Home Health Care" 
           class="w-auto object-contain mix-blend-multiply brightness-110" 
           style="max-height: 3.5rem; height: 3.5rem;"
+          onerror="this.style.display='none'"
         />
         <div>
           <p class="text-white font-black text-base uppercase tracking-tight">Loving People Home Health Care</p>
@@ -350,7 +570,7 @@ import '../styles/global.css';
       <div class="flex gap-6 text-xs font-semibold">
         <a href="#services" class="hover:text-white transition">Services</a>
         <a href="#process" class="hover:text-white transition">Care Process</a>
-        <a href="#contact" class="hover:text-white transition">Location</a>
+        <a href="#inquiry" class="hover:text-white transition">Intake</a>
         <a href="tel:3177179077" class="hover:text-white transition">Direct Line</a>
       </div>
 
