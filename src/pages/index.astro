@@ -264,7 +264,7 @@ import '../styles/global.css';
     </div>
   </section>
 
-  <!-- Complete Intake Form Section (Now using Web3Forms) -->
+  <!-- Complete Intake Form Section with Validated Lowercase Web3Forms Key -->
   <section id="inquiry" class="py-20 bg-brand-warm border-t border-brand-border">
     <div class="max-w-4xl mx-auto px-6">
       <div class="bg-white p-8 md:p-12 rounded-3xl border border-brand-border shadow-xl">
@@ -282,12 +282,10 @@ import '../styles/global.css';
           method="POST" 
           class="space-y-8"
         >
-          <!-- Web3Forms access_key field -->
-          <input type="hidden" name="access_key" value="C31a3a15-cc8b-4626-906c-1a76d5fb6a30" />
-          
-          <!-- Hidden custom fields for better email notifications -->
+          <!-- Exact Lowercase Web3Forms Access Key -->
+          <input type="hidden" name="access_key" value="c31a3a15-cc8b-4626-906c-1a76d5fb6a30" />
           <input type="hidden" name="subject" value="New Patient Care Intake" />
-          <input type="hidden" name="from_name" value="Loving People Intake Form" />
+          <input type="hidden" name="from_name" value="Loving People Care Desk" />
 
           <!-- Section 1: Client & Contact Info -->
           <div class="space-y-4">
@@ -385,7 +383,7 @@ import '../styles/global.css';
               </span>
             </div>
 
-            <!-- Helpful Card Reference Tip Box -->
+            <!-- Card Reference Tip Box -->
             <div class="bg-amber-50/60 border border-amber-200/80 p-3.5 rounded-xl flex items-start gap-3 text-xs text-amber-950">
               <svg class="w-4 h-4 text-brand-rust shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
